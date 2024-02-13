@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo.dark.png" width="300">
   <source media="(prefers-color-scheme: light)" srcset="docs/images/logo.light.png" width="300">
-  <img alt="logo" src="docs/images/logo.light.png" width="300">
+  <img alt="logo" src="https://github.com/n-splv/promptsub-py/raw/main/docs/images/logo.light.png" width="300">
 </picture>
 
 # Prompt substitution for humans
