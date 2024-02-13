@@ -7,11 +7,11 @@ from promptsub.errors import ParametersTypeError, PromptSyntaxError
 from promptsub import special_chatacters as sc
 
 
-def raises(exception):
+def raises(exception, match: str = None):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            with pytest.raises(exception):
+            with pytest.raises(exception, match=match):
                 func(*args, **kwargs)
         return wrapper
     return decorator
@@ -75,7 +75,7 @@ class TestTemplate:
     def test_empty_template(self, template):
         Prompt(template)
 
-    @raises(TypeError)
+    @raises(TypeError, match="Template text must be a string")
     @pytest.mark.parametrize("template", (
         None,
         type("Foo", (), {})(),

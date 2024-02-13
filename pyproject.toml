@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "promptsub"
-version = "0.1.0"
+version = "0.1.1"
 description = "Creating parametrized prompts for language models"
 authors = ["n-splv <nick.maykr@gmail.com>"]
 license = "MIT"
