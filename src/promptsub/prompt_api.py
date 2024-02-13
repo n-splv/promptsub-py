@@ -1,3 +1,4 @@
+from __future__ import annotations
 from functools import cached_property
 
 from attrs import (
@@ -16,10 +17,18 @@ from promptsub.types import (
 )
 
 
-template_factory = Factory(
-    lambda self: Template(input_text=self.template_text),
-    takes_self=True
-)
+def _init_template(self: Prompt) -> Template:
+    """
+    Manual type check because `attrs.validators` is a bit broken:
+    https://github.com/python-attrs/attrs/issues/1237
+
+    Can be replaced with a simple lambda if it gets fixed.
+    """
+    if not isinstance(self.template_text, str):
+        err_message = "Template text must be a string"
+        raise TypeError(err_message)
+
+    return Template(input_text=self.template_text)
 
 
 @frozen
@@ -43,7 +52,9 @@ class Prompt:
     template_text: str = field(validator=validators.instance_of(str))
 
     _template: Template = field(
-        init=False, repr=False, default=template_factory
+        init=False,
+        repr=False,
+        default=Factory(_init_template, takes_self=True)
     )
 
     def substitute(self,
