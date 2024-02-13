@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "promptsub"
+version = "0.1.0"
+description = "Creating parametrized prompts for language models"
+authors = ["n-splv <nick.maykr@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+attrs = "^23.2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
